@@ -10,13 +10,13 @@ exports.main = async (event, context) => {
   console.log(buffer)
   console.log('开始上传')
 
-  var stream = require('stream')
-  // 创建一个bufferstream
-  var bufferStream = new stream.PassThrough()
-  //将Buffer写入
-  bufferStream.end(buffer)
-  //进一步使用
-  bufferStream.pipe(process.stdout)
+
+  let Duplex = require('stream').Duplex
+
+  let stream = new Duplex()
+  stream.push(buffer)
+  stream.push(null)
+  console.log(stream)
 
   console.log('接收的内容')
   console.log('文件路径')
@@ -24,7 +24,7 @@ exports.main = async (event, context) => {
     method: 'post',
     url: 'https://api.remove.bg/v1.0/removebg',
     data: {
-      image_file: bufferStream,
+      image_file: stream,
       size: 'auto'
     },
     headers: {
