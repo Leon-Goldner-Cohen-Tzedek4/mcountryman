@@ -1,0 +1,44 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "pages/todo/index",
+          "pathName": "pages/todo-cloud/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "pages/ps-cloud/index",
+          "pathName": "pages/ps-cloud/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/todo-zx/index",
+          "pathName": "pages/todo-zx/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "grid",
+          "pathName": "pages/grid/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

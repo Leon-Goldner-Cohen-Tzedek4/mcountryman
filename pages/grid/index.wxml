@@ -1,0 +1,2 @@
+<canvas canvas-id="myCanvas" style="width: 400px; height: 480px;" />
+<button class="btn" type="primary" bindtap="upload">上传</button>

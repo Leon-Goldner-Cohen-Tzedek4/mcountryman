@@ -82,6 +82,10 @@ Page({
         url: './calendar/index/index',
       },
       {
+        title: '宫格拼图',
+        url: './grid/index',
+      },
+      {
         title: '回到顶部',
         url: './scrolltop/index/index',
       },
