@@ -1,7 +1,6 @@
 // 云函数入口文件
 const axios = require('axios')
 
-
 // 云函数入口函数
 exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
@@ -10,13 +9,22 @@ exports.main = async (event, context) => {
   const buffer = new Buffer(file, 'base64')
   console.log(buffer)
   console.log('开始上传')
-  var fs = require('fs')
+
+  var stream = require('stream')
+  // 创建一个bufferstream
+  var bufferStream = new stream.PassThrough()
+  //将Buffer写入
+  bufferStream.end(new Buffer(buffer))
+  //进一步使用
+  bufferStream.pipe(process.stdout)
+
   console.log('接收的内容')
   console.log('文件路径')
-  const result = await axios.post({
+  const result = await axios({
+    method: 'post',
     url: 'https://api.remove.bg/v1.0/removebg',
-    formData: {
-      image_file: buffer,
+    data: {
+      image_file: bufferStream,
       size: 'auto'
     },
     headers: {
