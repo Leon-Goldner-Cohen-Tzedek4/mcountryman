@@ -19,17 +19,25 @@ Page({
         wx.getFileSystemManager().readFile({
           filePath: file, //选择图片返回的相对路径
           encoding: 'base64', //编码格式
-          success: res => { //成功的回调
+          success: res => {
+            //成功的回调
             wx.cloud.callFunction({
-              name:'ps',
-              data:{
+              name: 'ps',
+              data: {
                 file: res.data
               },
-              success(_res){
-               
-                console.log(_res)
-              },fail(_res){
-                console.log(_res)
+              success: (res) => {
+                console.log(res)
+                const data = res.result.image
+                let url = 'data:image/png;base64,' + data
+                this.setData({
+                  url: url
+                })
+                //     //do something
+                console.log(res)
+              },
+              fail(err) {
+                console.log(err)
               }
             })
           }
@@ -40,7 +48,7 @@ Page({
         //   name: 'image',
         //   success: res => {
         //     const data = res.data
-        //     let url = 
+        //     let url =
         //       'data:image/png;base64,' + data
         //     this.setData({
         //       url: url

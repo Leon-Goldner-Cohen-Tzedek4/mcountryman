@@ -1,6 +1,5 @@
 // 云函数入口文件
-const axios = require('axios')
-
+const rp = require('request-promise')
 // 云函数入口函数
 exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
@@ -9,27 +8,18 @@ exports.main = async (event, context) => {
   const buffer = new Buffer.from(file, 'base64')
   console.log(buffer)
   console.log('开始上传')
-
-
-  let Duplex = require('stream').Duplex
-
-  let stream = new Duplex()
-  stream.push(buffer)
-  stream.push(null)
-  console.log(stream)
-
   console.log('接收的内容')
   console.log('文件路径')
-  const result = await axios({
-    method: 'post',
+  const result = await rp.post({
     url: 'https://api.remove.bg/v1.0/removebg',
-    data: {
-      image_file: stream,
+    formData: {
+      image_file: buffer,
       size: 'auto'
     },
     headers: {
       'X-Api-Key': 'wkMhcc4TRNFpxjL79Kf8mMU1'
-    }
+    },
+    encoding: null
   })
   console.log(result)
   const body = result
