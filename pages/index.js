@@ -23,7 +23,7 @@ Page({
       },
       {
         title: 'VantUI购物车',
-        url: './todo/index',
+        url: './vant/cart',
       },
       {
         title: 'PS抠图',
