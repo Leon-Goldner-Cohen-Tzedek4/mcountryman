@@ -6,7 +6,7 @@ exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext()
   console.log(event)
   const file = event.file
-  const buffer = new Buffer(file, 'base64')
+  const buffer = new Buffer.from(file, 'base64')
   console.log(buffer)
   console.log('开始上传')
 
@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
   // 创建一个bufferstream
   var bufferStream = new stream.PassThrough()
   //将Buffer写入
-  bufferStream.end(new Buffer(buffer))
+  bufferStream.end(buffer)
   //进一步使用
   bufferStream.pipe(process.stdout)
 
@@ -29,8 +29,7 @@ exports.main = async (event, context) => {
     },
     headers: {
       'X-Api-Key': 'wkMhcc4TRNFpxjL79Kf8mMU1'
-    },
-    encoding: null
+    }
   })
   console.log(result)
   const body = result
